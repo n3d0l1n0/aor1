@@ -1,1 +1,47 @@
 ; PRVI ZADATAK 
+.386
+.model flat, c
+.data
+X WORD 15
+Y WORD 6
+Z WORD 7 
+.code
+main proc
+MOV EAX, 0 
+MOV EBX, 0 
+MOV EDX, 0 
+MOV ECX, 0
+MOV EDI, 0 
+MOV ESI, 0
+MOV AX, X 
+MOV BX, Y 
+MOV CX, Y 
+
+POCETAK: 
+CMP EAX, 0
+JE KRAJ
+CMP ECX,1
+JBE KRAJ 
+DEC BX ;BX<- Y-1
+MUL BX ;AX<- X*(Y-1)
+ADD AX, 10 ; AX<- 10+X*(Y-1)
+MOV DI, AX 
+MOV EBX, 0 
+MOV BX, Z
+ADD BX, Y 
+DEC BX 
+MOV AX, BX 
+MUL BX 
+MOV BX, AX
+MOV AX, DI
+DIV BX 
+
+SHR CX, 1
+INC CX 
+JMP POCETAK
+
+KRAJ: 
+
+ret
+main endp
+end main
